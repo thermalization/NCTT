@@ -1,0 +1,196 @@
+#
+# Backup of etc/p/config_phi0_0_8_reg02.yaml
+# Date: 2016-05-03 13:54:40 +0200
+#
+#       SWEC example config
+#
+
+# Generate initial geodesics or load them
+LOAD_B_GEODESICS: n
+
+# Generate initial geodesics or load them
+LOAD_MATH_GEODESICS: n
+
+# Type of initial data
+#
+# shockwaves: evolution with shockwaves
+#
+# checkpoint: read from a checkpoint
+#
+# phi_gaussian_u: constant scalar field with gaussian profile on top
+#
+# phi_sine_u: constant scalar field with sine profile on top
+#
+# phi_gaussian_z: gaussian profile in z for scalar field
+#
+# phi_thermal_1: phi initial data that should be close to its thermal profile
+#
+# phi_gaussian_u_eq_pert: similar to phi_gaussian_u, but reads only the
+#                         energy density (EPSILON_END) parameter from the
+#                         parameter file. phi2 is then looked up and set to
+#                         the corresponding equilibrium value.
+#
+# simple_BH: pure gravity configuration, where we simply initialise a (possibly
+#            perturbed) black brane. currently the simplest initial data file,
+#            being also a nice introduction to understand the necessary steps.
+
+INITIAL_DATA: shockwaves
+
+# Save initial geodesics
+SAVE_GEODESICS: n
+
+SAVE_REGULATOR: n
+
+# prefixes all path variables (absolute path)
+PATH_PREFIX: /gpfs/scratch/ub65/ub65695/
+
+# data output directory (relative path)
+#DATA_DIRECTORY: phi0_1_3_phiM_10_z_768_w_0_32_eps_0_01/
+
+
+# Checkpoint files
+# CHECKPOINT_B_METRIC:   w0.3_run002/B_metric_s000000.dat
+# CHECKPOINT_PHI_METRIC: w0.3_run002/phi_metric_s000000.dat
+# CHECKPOINT_KSI:        w0.3_run002/ksi_s000000.dat
+# CHECKPOINT_A4:         w0.3_run002/a4_s000000.dat
+# CHECKPOINT_F2:         w0.3_run002/f2_s000000.dat
+
+
+# u left and right boundaries
+GRID_U_LEFT: 0.0
+GRID_U_RIGHT: 0.11
+
+GRID2_U_LEFT: 0.1
+GRID2_U_RIGHT: 2.005
+
+USE_FULL_EXP: y
+
+# position of the Apparent Horizon
+AH_POSITION: 2.0
+
+# number of points along the u coordinate
+GRID_U_POINTS: 12
+GRID2_U_POINTS: 72
+
+# u stepsize for the initial geodesics in FG coordinates
+GEODESICS_DELTA_U: 0.00005
+
+# z left and right boundaries
+GRID_Z_LEFT:  0.
+GRID_Z_RIGHT:  20.
+
+# number of points along z
+GRID_Z_POINTS: 768
+
+# number of domains in z (Attention: even number)
+GRID_Z_DOMAINS: 1
+
+# Grid type in z
+#  3       uniform, periodic BC with fin. diff. order 8
+#  2       uniform, periodic BC with fin. diff. order 4
+#  1       uniform, fin. diff. derivatives with outgoing BC (not implemented yet)
+#  0       lobatto-chebychev grid
+GRIDTYPE_Z: 2
+
+# initial gaussian shape
+INITIAL_MU: 1.8799712
+INITIAL_W:  0.42666666666666666666666
+INITIAL_X0: 13.5
+
+# one or two shocks?
+SINGLE_SHOCK: n
+
+
+# initial geodesics
+GEODESICS_U_FG: 8.0
+
+# regulator parameters
+EPSILON_START: 2.
+#EPSILON_END:   0.01
+REGULATOR_PREFACTOR: 1.15
+
+
+# evolution delta_t
+TIME_STEP: 0.0005
+
+# end time of the evolution
+EVOLUTION_TOTAL_TIME: 16.
+
+# integratin method: 'RK': RungeKutta  - 'A': AdamsBashford
+INTEGRATION_METHOD: AB
+# defaults to 4
+ORDER_ADAMS–BASHFORTH: 4
+ORDER_FCONSTRAINT: 4
+
+# output frequency
+OUTPUT_BOUNDARY_EVERY: 100
+OUTPUT_DATA_EVERY: 2000
+FCONSTRAINT_EVERY: 2000
+
+# hyperbolic damping term in dksi_dt equation
+KAPPA_DAMP : 1.0
+
+
+# turn on the filter in u and/or z
+FILTER_Z: y
+FILTER_Z_TYPE: KO_3
+FILTER_U: y
+# evol: filter dBdt, dphidt, dksidt, da4dt, df2dt
+# poststep: filter B, phi, ksi, a4, f2 after time-stepping
+# metric: remaining functions, during nested scheme
+# deriv: filter derivatives
+# init_get: filter during initial data generation
+FILTER_EVOL: n
+FILTER_POSTSTEP: y
+FILTER_METRIC: n
+FILTER_DERIV: n
+FILTER_INIT_GEN: n
+
+# parameters of the u exponential filter
+FILTER_ALPHA: 36.0437
+FILTER_GAMMA: 8
+
+# parameters for the sinc filter in z
+## cutoff and window should be in range [0,1]
+## the larger the window, the steeper the cutoff
+FILTERZ_CUTOFF: 0.8
+FILTERZ_WINDOW: 0.1
+
+# KO filter in z (Kreiss-Oliger dissipation parameter; should be in range [0,1])
+KO_DISS : 0.2
+
+# turn on scalar field
+USE_SCALAR_FIELD: y
+
+# scalar field constants and initial conditions
+#SCALAR_PHI0: 1.3
+SCALAR_PHIM: 10.
+
+
+#MU_DELTA: 0.05
+#MU_DELTA: 0.02
+
+# ID_PHI_GAUSS_U_SIGMA: 0.05
+# ID_PHI_GAUSS_U_AMP: 0.0
+# ID_PHI_GAUSS_U_U0: 0.6
+
+# ID_PHI_SINE_U_C0: 0.1
+# ID_PHI_SINE_U_K: 50.0
+# ID_PHI_SINE_U_AMP: 0.2
+# ID_PHI_SINE_U_U0: 0.0
+# ID_PHI2D_Z_AMP: 0.04
+# ID_PHI2D_Z_AMP_DELTA: 0.002
+# ID_PHI2D_COS_Z_K: 10
+# ID_PHI2D_GAUSS_Z_SIGMA: 0.05
+# ID_PHI2D_GAUSS_Z_Z0: 20.
+
+
+# a possible good start value could be REGULATOR_END**0.25
+ID_KSI_LOOP_START: 1
+ID_KSI_LOOP_DELTA: -0.005
+ID_KSI_LOOP_ITMAX: 2000
+# where to try to minimize Sigma_dot full. (good options are either 1 or GRID_U_RIGHT)
+ID_KSI_LOOP_UH:    2.
+EPSILON_END:   0.02
+SCALAR_PHI0: 0.8
+DATA_DIRECTORY: phi0_0_8_phiM_10_z_768_w_0_32_eps_0_02/
